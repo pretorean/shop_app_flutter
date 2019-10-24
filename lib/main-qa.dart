@@ -8,10 +8,10 @@ import 'package:shop_app/runner/runner.dart';
 //Main entry point of app
 void main() async {
   Environment.init(
-    buildType: BuildType.debug,
+    buildType: BuildType.qa,
     config: Config(
       url: Url.testUrl,
-      proxyUrl: Url.devProxyUrl,
+      proxyUrl: Url.qaProxyUrl,
       debugOptions: DebugOptions(
         debugShowCheckedModeBanner: true,
       ),
