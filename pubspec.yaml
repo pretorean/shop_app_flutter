@@ -21,6 +21,8 @@ dependencies:
     path: packages/network
   injector:
     path: packages/injector
+  mwwm:
+    path: packages/mwwm
 
 dev_dependencies:
   flutter_test:
