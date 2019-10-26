@@ -1,10 +1,12 @@
-import 'package:flutter/widgets.dart' as w;
+import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shop_app/ui/screen/main/main_route.dart';
 
 class AppWidgetModel extends WidgetModel {
   // ignore: unused_field
-  final w.GlobalKey<w.NavigatorState> _navigator;
+  final GlobalKey<NavigatorState> _navigator;
 
   // ignore: unused_field
   final MessageController _msgController;
@@ -34,7 +36,9 @@ class AppWidgetModel extends WidgetModel {
   }
 
   /// Метод открывает первый экран приложения
-  Future<void> _openFirstScreen() async {}
+  Future<void> _openFirstScreen() async {
+    unawaited(_navigator.currentState.pushReplacement(MainScreenRoute()));
+  }
 
   Observable<bool> initApp() {
     return Observable.just(true).delay(Duration(seconds: 2));
