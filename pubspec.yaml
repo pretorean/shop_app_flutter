@@ -25,13 +25,13 @@ dependencies:
     path: packages/mwwm
 
   # хранилище
-  shared_preferences: ^0.5.1+1
+  shared_preferences: ^0.5.4+1
 
   # svg images
-  flutter_svg: 0.14.1
+  flutter_svg: ^0.14.3
 
   #rx
-  rxdart: 0.22.0
+  rxdart: ^0.22.4
 
 
 dev_dependencies:
