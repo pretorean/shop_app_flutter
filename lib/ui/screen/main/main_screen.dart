@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:shop_app/ui/common/bottom_bar_widget.dart';
 import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/ui/screen/main/di/main_component.dart';
 import 'package:shop_app/ui/screen/main/di/main_wm_builder.dart';
+import 'package:shop_app/ui/screen/main/main_route.dart';
 import 'package:shop_app/ui/screen/main/main_wm.dart';
 
 /// Экран <Main>
@@ -26,6 +28,9 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
         iconTheme: IconThemeData(
           color: white,
         ),
+      ),
+      bottomNavigationBar: BottomBarWidget(
+        currentIndex: MainScreenRoute.thisPageIndex,
       ),
       body: _buildBody(),
     );
