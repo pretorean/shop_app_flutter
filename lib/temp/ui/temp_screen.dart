@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/res/colors.dart';
-import 'package:shop_app/temp/ui/di/temp_screen_component.dart';
+import 'package:shop_app/temp/ui/di/temp_component.dart';
+import 'package:shop_app/temp/ui/di/temp_wm_builder.dart';
 import 'package:shop_app/temp/ui/temp_wm.dart';
 
 /// Экран <todo>
@@ -12,16 +13,13 @@ class TempScreen extends MwwmWidget<TempScreenComponent> {
       : super(
           dependenciesBuilder: (context) => TempScreenComponent(context),
           widgetStateBuilder: () => _TempScreenState(),
+          widgetModelBuilder: createTempWm,
         );
 }
 
 class _TempScreenState extends WidgetState<TempWidgetModel> {
   @override
   Widget build(BuildContext context) {
-    return _buildScreen(context);
-  }
-
-  Widget _buildScreen(BuildContext context) {
     return Scaffold(
       key: Injector.of<TempScreenComponent>(context).component.scaffoldKey,
       appBar: AppBar(

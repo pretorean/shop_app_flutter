@@ -3,7 +3,7 @@ import 'package:mwwm/mwwm.dart';
 
 /// [WidgetModel] для экрана <todo>
 class TempWidgetModel extends WidgetModel {
-  final NavigatorState navigator;
+  final GlobalKey<NavigatorState> navigator;
 
   TempWidgetModel(
     WidgetModelDependencies dependencies,
