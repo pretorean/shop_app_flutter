@@ -5,7 +5,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:shop_app/ui/screen/main/main_route.dart';
 
 class AppWidgetModel extends WidgetModel {
-  // ignore: unused_field
   final GlobalKey<NavigatorState> _navigator;
 
   // ignore: unused_field

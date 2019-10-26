@@ -3,9 +3,9 @@ import 'package:mwwm/mwwm.dart';
 import 'package:network/network.dart';
 import 'package:shop_app/interactor/common/exceptions.dart';
 import 'package:shop_app/interactor/session/session_changed_interactor.dart';
-import 'package:shop_app/res/strings/common_strings.dart';
 import 'package:shop_app/ui/base/error/network_error_handler.dart';
 import 'package:shop_app/ui/base/material_message_controller.dart';
+import 'package:shop_app/ui/res/strings/common_strings.dart';
 
 /// Стандартная реализация эррор хендлера
 class StandardErrorHandler extends NetworkErrorHandler {

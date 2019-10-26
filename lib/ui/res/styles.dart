@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/res/colors.dart';
-import 'package:shop_app/res/text_styles.dart';
+import 'package:shop_app/ui/res/colors.dart';
+import 'package:shop_app/ui/res/text_styles.dart';
 
 /// Основные стили
 // todo Настройка темы приложения

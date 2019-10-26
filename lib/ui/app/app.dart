@@ -4,10 +4,10 @@ import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/domain/debug_options.dart';
-import 'package:shop_app/res/styles.dart';
 import 'package:shop_app/ui/app/app_wm.dart';
 import 'package:shop_app/ui/app/di/app.dart';
 import 'package:shop_app/ui/app/di/app_wm_builder.dart';
+import 'package:shop_app/ui/res/styles.dart';
 
 /// Виджет приложения
 class App extends MwwmWidget<AppComponent> {

@@ -1,4 +1,4 @@
-import 'package:shop_app/res/strings/common_strings.dart';
+import 'package:shop_app/ui/res/strings/common_strings.dart';
 import 'package:shop_app/util/sp_helper.dart';
 
 /// Хранилище токена сессии
