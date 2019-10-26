@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shop_app/res/strings/common_strings.dart';
-import 'package:shop_app/res/text_styles.dart';
+import 'package:shop_app/ui/res/strings/common_strings.dart';
+import 'package:shop_app/ui/res/text_styles.dart';
 
 ///alert диалог, который сам проверяет платформу
 class PlatformAlertDialog extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:mwwm/mwwm.dart';
-import 'package:shop_app/res/colors.dart';
 import 'package:shop_app/ui/base/owners/snackbar_owner.dart';
+import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/util/enum.dart';
 
 ///Стандартная реализация [MessageController]

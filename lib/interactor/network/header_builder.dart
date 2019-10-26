@@ -1,6 +1,6 @@
 import 'package:network/network.dart';
 import 'package:shop_app/interactor/token/token_storage.dart';
-import 'package:shop_app/res/strings/common_strings.dart';
+import 'package:shop_app/ui/res/strings/common_strings.dart';
 
 /// Реализация билдера заголовков http запросов
 class DefaultHeaderBuilder extends HeadersBuilder {
