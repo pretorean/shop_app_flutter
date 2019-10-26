@@ -6,7 +6,7 @@ import 'package:shop_app/ui/screen/main/main_route.dart';
 class BottomBarWidget extends StatelessWidget {
   BottomBarWidget({
     this.currentIndex,
-    this.bagIsEmpty,
+    this.bagIsEmpty = true,
   });
 
   final int currentIndex;

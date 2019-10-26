@@ -3,7 +3,17 @@ import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/ui/res/text_styles.dart';
 
 /// Основные стили
-// todo Настройка темы приложения
+
+/// светлая тема
+final lightThemeData = ThemeData(
+  accentColorBrightness: Brightness.light,
+);
+
+/// темная тема
+final darkThemeData = ThemeData(
+  accentColorBrightness: Brightness.dark,
+);
+
 final themeData = ThemeData(
   primaryColor: primaryColor,
   accentColor: colorAccent,

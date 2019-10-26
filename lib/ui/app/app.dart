@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:shop_app/config/config.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/domain/debug_options.dart';
 import 'package:shop_app/ui/app/app_wm.dart';
@@ -42,7 +43,7 @@ class _AppState extends WidgetState<AppWidgetModel> {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: _navigatorKey,
-      theme: themeData,
+      theme: getConfig().isDarkTheme ? darkThemeData : lightThemeData,
       showPerformanceOverlay: getDebugConfig().showPerformanceOverlay,
       debugShowMaterialGrid: getDebugConfig().debugShowMaterialGrid,
       checkerboardRasterCacheImages:
@@ -82,4 +83,6 @@ class _AppState extends WidgetState<AppWidgetModel> {
   }
 
   DebugOptions getDebugConfig() => Environment.instance().config.debugOptions;
+
+  Config getConfig() => Environment.instance().config;
 }
