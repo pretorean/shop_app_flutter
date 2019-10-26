@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
 
-/// [WidgetModel] для экрана <todo>
-class TempWidgetModel extends WidgetModel {
+/// [WidgetModel] для экрана <Main>
+class MainWidgetModel extends WidgetModel {
   final GlobalKey<NavigatorState> navigator;
 
-  TempWidgetModel(
+  MainWidgetModel(
     WidgetModelDependencies dependencies,
     this.navigator,
   ) : super(dependencies);
