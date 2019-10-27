@@ -48,7 +48,10 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
               );
             },
           ),
-          
+          RaisedButton(
+            child: Text('Открыть экран регистрации'),
+            onPressed: wm.openRegisterScreenAction,
+          ),
         ],
       ),
     );

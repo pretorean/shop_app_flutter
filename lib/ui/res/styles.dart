@@ -7,10 +7,24 @@ import 'package:shop_app/ui/res/colors.dart';
 final lightThemeData = ThemeData(
   brightness: Brightness.light,
   primaryColor: colorPrimary_light,
-  //
-  fontFamily: 'Metropolis',
-
   backgroundColor: colorBackground_light,
+  scaffoldBackgroundColor: colorBackground_light,
+  appBarTheme: AppBarTheme(
+    color: colorBackground_light,
+    iconTheme: IconThemeData(color: colorBlack_light),
+    textTheme: TextTheme(
+      title: TextStyle(
+        fontSize: 34.0,
+        fontStyle: FontStyle.normal,
+        color: colorBlack_light,
+      ),
+      body1: TextStyle(),
+    ),
+  ),
+  buttonTheme: ButtonThemeData(
+    buttonColor: colorPrimary_light,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+  ),
   errorColor: colorError_light,
 );
 
@@ -18,9 +32,23 @@ final lightThemeData = ThemeData(
 final darkThemeData = ThemeData(
   brightness: Brightness.dark,
   primaryColor: colorPrimary_dark,
-  //
-  fontFamily: 'Metropolis',
-
   backgroundColor: colorBackground_dark,
+  scaffoldBackgroundColor: colorBackground_dark,
+  appBarTheme: AppBarTheme(
+    color: colorBackground_dark,
+    iconTheme: IconThemeData(color: colorWhite_dark),
+    textTheme: TextTheme(
+      title: TextStyle(
+        fontSize: 34.0,
+        fontStyle: FontStyle.normal,
+        color: colorWhite_dark,
+      ),
+      body1: TextStyle(),
+    ),
+  ),
+  buttonTheme: ButtonThemeData(
+    buttonColor: colorPrimary_dark,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+  ),
   errorColor: colorError_dark,
 );

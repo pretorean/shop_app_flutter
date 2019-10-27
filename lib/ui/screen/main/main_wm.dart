@@ -3,16 +3,18 @@ import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/config.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/interactor/theme_storage/theme_storage.dart';
+import 'package:shop_app/ui/screen/auth/register/register_route.dart';
 
 /// [WidgetModel] для экрана <Main>
 class MainWidgetModel extends WidgetModel {
-  final w.GlobalKey<w.NavigatorState> navigator;
+  final w.GlobalKey<w.NavigatorState> _navigator;
 
   final ThemeStorage _themeStorage;
 
   final themeState = StreamedState<bool>();
 
   final changeThemeAction = Action<bool>();
+  final openRegisterScreenAction = Action();
 
   Config get config => Environment.instance().config;
 
@@ -20,7 +22,7 @@ class MainWidgetModel extends WidgetModel {
 
   MainWidgetModel(
     WidgetModelDependencies dependencies,
-    this.navigator,
+    this._navigator,
     this._themeStorage,
   ) : super(dependencies);
 
@@ -39,5 +41,8 @@ class MainWidgetModel extends WidgetModel {
       config = config.copyWith(isDarkTheme: value);
       _themeStorage.saveTheme(value);
     });
+
+    bind(openRegisterScreenAction,
+        (_) => _navigator.currentState.push(RegisterScreenRoute()));
   }
 }
