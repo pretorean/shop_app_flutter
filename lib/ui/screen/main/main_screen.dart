@@ -35,16 +35,21 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
   }
 
   Widget _buildBody() {
-    return Container(
-      child: StreamedStateBuilder<bool>(
-        streamedState: wm.themeState,
-        builder: (context, snapshot) {
-          return SwitchListTile(
-            title: Text(blackThemeText),
-            value: snapshot,
-            onChanged: wm.changeThemeAction,
-          );
-        },
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          StreamedStateBuilder<bool>(
+            streamedState: wm.themeState,
+            builder: (context, snapshot) {
+              return SwitchListTile(
+                title: Text(blackThemeText),
+                value: snapshot,
+                onChanged: wm.changeThemeAction,
+              );
+            },
+          ),
+          
+        ],
       ),
     );
   }
