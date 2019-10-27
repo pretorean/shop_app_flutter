@@ -35,7 +35,16 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
 
   Widget _buildBody() {
     return Container(
-      child: Text("main screen"),
+      child: StreamedStateBuilder<bool>(
+        streamedState: wm.themeState,
+        builder: (context, snapshot) {
+          return SwitchListTile(
+            title: Text("Темная тема"),
+            value: snapshot,
+            onChanged: wm.changeThemeAction,
+          );
+        },
+      ),
     );
   }
 }
