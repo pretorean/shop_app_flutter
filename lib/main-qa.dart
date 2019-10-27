@@ -12,6 +12,7 @@ void main() async {
     config: Config(
       url: Url.testUrl,
       proxyUrl: Url.qaProxyUrl,
+      isDarkTheme: false,
       debugOptions: DebugOptions(
         debugShowCheckedModeBanner: true,
       ),

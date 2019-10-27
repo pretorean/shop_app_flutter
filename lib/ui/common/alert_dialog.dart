@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shop_app/ui/res/strings/common_strings.dart';
-import 'package:shop_app/ui/res/text_styles.dart';
 
 ///alert диалог, который сам проверяет платформу
 class PlatformAlertDialog extends StatelessWidget {
@@ -43,8 +42,7 @@ class PlatformAlertDialog extends StatelessWidget {
 
   Widget _buildMaterialDialog() => AlertDialog(
         title: Text(
-          alertText,
-          style: textRegular16Grey,
+          alertText, // todo text style from theme
         ),
         actions: <Widget>[
           onDisagreeClicked != null

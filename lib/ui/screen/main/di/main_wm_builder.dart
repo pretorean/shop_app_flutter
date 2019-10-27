@@ -19,5 +19,6 @@ MainWidgetModel createMainWm(BuildContext context) {
   return MainWidgetModel(
     dependencies,
     component.navigatorKey,
+    component.themeStorage,
   );
 }

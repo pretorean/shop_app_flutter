@@ -16,7 +16,7 @@ class MaterialMessageController extends MessageController {
     MsgType.commonError: (text) => SnackBar(
           content: Text(text),
           duration: Duration(seconds: 2),
-          backgroundColor: colorError,
+          backgroundColor: colorError_light, // todo fix theme color
         ),
     MsgType.common: (text) => SnackBar(
           content: Text(text),

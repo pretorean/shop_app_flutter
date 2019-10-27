@@ -8,6 +8,7 @@ import 'package:shop_app/interactor/auth/auth_interactor.dart';
 import 'package:shop_app/interactor/network/header_builder.dart';
 import 'package:shop_app/interactor/network/status_mapper.dart';
 import 'package:shop_app/interactor/session/session_changed_interactor.dart';
+import 'package:shop_app/interactor/theme_storage/theme_storage.dart';
 import 'package:shop_app/interactor/token/token_storage.dart';
 import 'package:shop_app/ui/base/default_dialog_controller.dart';
 import 'package:shop_app/ui/base/material_message_controller.dart';
@@ -20,6 +21,7 @@ class AppComponent implements Component {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   PreferencesHelper preferencesHelper = PreferencesHelper();
+  ThemeStorage themeStorage;
   AuthInfoStorage authStorage;
   RxHttp http;
   SessionChangedInteractor scInteractor;
@@ -29,6 +31,7 @@ class AppComponent implements Component {
   DialogController dialogController;
 
   AppComponent() {
+    themeStorage = ThemeStorage(preferencesHelper);
     authStorage = AuthInfoStorage(preferencesHelper);
 
     http = _initHttp(authStorage);

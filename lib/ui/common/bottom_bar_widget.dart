@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/screen/main/main_route.dart';
 
 class BottomBarWidget extends StatelessWidget {
   BottomBarWidget({
     this.currentIndex,
-    this.bagIsEmpty,
+    this.bagIsEmpty = true,
   });
 
   final int currentIndex;
@@ -14,6 +15,8 @@ class BottomBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
     return BottomNavigationBar(
       fixedColor: Theme.of(context).accentColor,
       currentIndex: currentIndex,
@@ -21,29 +24,41 @@ class BottomBarWidget extends StatelessWidget {
       onTap: (index) => _onItemTap(context, index),
       items: [
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(icHomeInactive),
-          activeIcon: SvgPicture.asset(icHomeActivated),
-          title: SizedBox.shrink(),
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(icShopInactive),
-          activeIcon: SvgPicture.asset(icShopInactive),
+          icon: SvgPicture.asset(
+              _isDark ? icHomeInactiveDark : icHomeInactiveLight),
+          activeIcon: SvgPicture.asset(
+              _isDark ? icHomeActivatedDark : icHomeActivatedLight),
           title: SizedBox.shrink(),
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-              bagIsEmpty ? icBagInactive : icBagIndicatorInactive),
-          activeIcon: SvgPicture.asset(icBagActivated),
+              _isDark ? icShopInactiveDark : icShopInactiveLight),
+          activeIcon: SvgPicture.asset(
+              _isDark ? icShopInactiveDark : icShopInactiveLight),
           title: SizedBox.shrink(),
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(icHeartInactive),
-          activeIcon: SvgPicture.asset(icHeartActivated),
+          icon: SvgPicture.asset(bagIsEmpty
+              ? (_isDark ? icBagInactiveDark : icBagInactiveLight)
+              : (_isDark
+                  ? icBagIndicatorInactiveDark
+                  : icBagIndicatorInactiveLight)),
+          activeIcon: SvgPicture.asset(
+              _isDark ? icBagActivatedDark : icBagActivatedLight),
           title: SizedBox.shrink(),
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(icProfileInactive),
-          activeIcon: SvgPicture.asset(icProfileActivated),
+          icon: SvgPicture.asset(
+              _isDark ? icHeartInactiveDark : icHeartInactiveLight),
+          activeIcon: SvgPicture.asset(
+              _isDark ? icHeartActivatedDark : icHeartActivatedLight),
+          title: SizedBox.shrink(),
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+              _isDark ? icProfileInactiveDark : icProfileInactiveLight),
+          activeIcon: SvgPicture.asset(
+              _isDark ? icProfileActivatedDark : icProfileActivatedLight),
           title: SizedBox.shrink(),
         ),
       ],
@@ -59,7 +74,7 @@ class BottomBarWidget extends StatelessWidget {
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text('can route to $index screen'),
-            backgroundColor: Colors.red,
+            backgroundColor: Theme.of(context).errorColor,
           ),
         );
     }

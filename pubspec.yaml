@@ -48,4 +48,6 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   assets:
+    - res/assets/light/
+    - res/assets/dark/
     - res/assets/

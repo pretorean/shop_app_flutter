@@ -5,7 +5,6 @@ import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/temp/ui/di/temp_component.dart';
 import 'package:shop_app/temp/ui/di/temp_wm_builder.dart';
 import 'package:shop_app/temp/ui/temp_wm.dart';
-import 'package:shop_app/ui/res/colors.dart';
 
 /// Экран <todo>
 class TempScreen extends MwwmWidget<TempScreenComponent> {
@@ -23,9 +22,7 @@ class _TempScreenState extends WidgetState<TempWidgetModel> {
     return Scaffold(
       key: Injector.of<TempScreenComponent>(context).component.scaffoldKey,
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: white,
-        ),
+        title: Text("temp screen"),
       ),
       body: _buildBody(),
     );

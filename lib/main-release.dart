@@ -12,6 +12,7 @@ void main() async {
     config: Config(
       url: Url.prodUrl,
       proxyUrl: Url.prodProxyUrl,
+      isDarkTheme: false,
       debugOptions: DebugOptions(),
     ),
   );
