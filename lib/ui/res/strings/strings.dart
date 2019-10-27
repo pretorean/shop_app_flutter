@@ -1,5 +1,9 @@
 // Авторизация
-const String phoneInputScreenText =
-        "Для авторизации укажите номер\nвашего мобильного телефона",
-    phoneInputHintText = "Номер телефона",
-    phonePrefix = "+7 ";
+const String registerScreenTitle = 'Регистрация';
+const String registerNameField = 'Имя';
+const String registerEmailField = 'Email';
+const String registerPasswordField = 'Пароль';
+const String registerButtonText = 'Зарегистрироваться';
+const String registerAlreadyHaveAccountText = 'Уже есть аккаунт?';
+const String registerForgotPasswordText = 'Забыли пароль?';
+const String registerNotHaveAccountText = 'Нет акаунта?';

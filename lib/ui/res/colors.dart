@@ -28,6 +28,7 @@ Color
     colorError_dark = _redOrange,
 
 // other colors
+    colorBadColors = _magenta,
     textColorPrimary = _magenta;
 
 // Основная палитра (http://www.color-blindness.com/color-name-hue/)
