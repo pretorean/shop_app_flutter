@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
+import 'package:shop_app/ui/res/strings/common_strings.dart';
 import 'package:shop_app/ui/screen/main/di/main_component.dart';
 import 'package:shop_app/ui/screen/main/di/main_wm_builder.dart';
 import 'package:shop_app/ui/screen/main/main_route.dart';
@@ -39,7 +40,7 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
         streamedState: wm.themeState,
         builder: (context, snapshot) {
           return SwitchListTile(
-            title: Text("Темная тема"),
+            title: Text(blackThemeText),
             value: snapshot,
             onChanged: wm.changeThemeAction,
           );

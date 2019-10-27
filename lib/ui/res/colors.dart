@@ -28,35 +28,7 @@ Color
     colorError_dark = _redOrange,
 
 // other colors
-    textColorPrimary = _magenta,
-
-//
-    secondaryBtnColor = _alizarin_10,
-    hintColor = _darkGrey,
-    secondaryColor = _darkGrey,
-    darkSecondaryColor = _empress,
-    disabledBgColor = _whiteSmoke_F6,
-    backgroundColor = _white,
-    scaffoldBackgroundColor = _whiteSmoke_F9,
-    appBarColor = _white,
-    buttonColorGrey = _greyChateau,
-    white = _white,
-    black = _black,
-    blackButtonColor = _revolver,
-    dividerColor = _solitude,
-    textColorSecondary = _darkGrey,
-    textColorSecondaryDark = _darkGrey,
-    textColorGrey = _grey,
-    textColorBlack = _black,
-    textColorWhite = _white,
-    textColorOrange = _orange,
-    textColorGreyChateau = _greyChateau,
-    transparent = Colors.transparent,
-    onboardingIndicatorThumbColor = _nepal,
-    onboardingIndicatorTrackColor = _nepal.withOpacity(0.4),
-    onboardingContentBackgroundColor = _white,
-    pinEnteringKeyboardBtnColor = _white,
-    pinEnteringKeyboardBtnPressedColor = _greyChateau;
+    textColorPrimary = _magenta;
 
 // Основная палитра (http://www.color-blindness.com/color-name-hue/)
 Color
@@ -80,16 +52,4 @@ Color
     _redOrange = Color(0xFFFF2424), //Error
 
 // other colors
-    _magenta = Color(0xFFFF00FF), // цвет ошибочной палитры
-
-//
-    _black = Colors.black,
-    _orange = Color(0xFFFF8C00),
-    _alizarin_10 = Color(0xFFF8E4E5),
-    _revolver = Color(0xFF35353B),
-    _solitude = Color(0xFFE5E8EB),
-    _darkGrey = Color(0xFFA7A7A7),
-    _grey = Color(0x8A000000),
-    _greyChateau = Color(0xFF95989A),
-    _empress = Color(0xFF757575),
-    _nepal = Color(0xFF95A3B4);
+    _magenta = Color(0xFFFF00FF); // цвет ошибочной палитры

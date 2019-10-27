@@ -7,6 +7,8 @@ const String itemNotFoundException = "Товар не найден";
 
 const String userNotFoundText = "Пользователь не найден";
 
+const String blackThemeText = "Темная тема";
+
 //placeholder
 const String errorPlaceholderTitleText = "Данные недоступны";
 const String errorPlaceholderSubtitleText = "Попробуйте повторить позже";
