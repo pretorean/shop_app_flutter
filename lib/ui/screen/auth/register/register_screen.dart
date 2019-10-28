@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/auth/register/di/register_component.dart';
@@ -34,6 +35,8 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
   }
 
   Widget _buildBody() {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SingleChildScrollView(
@@ -74,7 +77,7 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
                 children: <Widget>[
                   Text(registerAlreadyHaveAccountText),
                   IconButton(
-                    icon: SvgPicture.asset(icRoundArrowRightDark),
+                    icon: SvgPicture.asset(_isDark ? icRoundArrowRightDark : icRoundArrowRightLight),
                     onPressed: () {},
                   ),
                 ],

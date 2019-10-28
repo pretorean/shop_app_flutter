@@ -3,6 +3,7 @@ import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/config.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/interactor/theme_storage/theme_storage.dart';
+import 'package:shop_app/ui/screen/auth/forgot_password/forgot_password_route.dart';
 import 'package:shop_app/ui/screen/auth/login/login_route.dart';
 import 'package:shop_app/ui/screen/auth/register/register_route.dart';
 
@@ -17,6 +18,7 @@ class MainWidgetModel extends WidgetModel {
   final changeThemeAction = Action<bool>();
   final openRegisterScreenAction = Action();
   final openLoginScreenAction = Action();
+  final openForgotPasswordScreenAction = Action();
 
   Config get config => Environment.instance().config;
 
@@ -48,5 +50,7 @@ class MainWidgetModel extends WidgetModel {
         (_) => _navigator.currentState.push(RegisterScreenRoute()));
     bind(openLoginScreenAction,
         (_) => _navigator.currentState.push(LoginScreenRoute()));
+    bind(openForgotPasswordScreenAction,
+        (_) => _navigator.currentState.push(ForgotPasswordScreenRoute()));
   }
 }

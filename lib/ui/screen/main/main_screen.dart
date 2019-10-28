@@ -56,6 +56,10 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
             child: Text('Открыть экран входа'),
             onPressed: wm.openLoginScreenAction,
           ),
+          RaisedButton(
+            child: Text('Открыть экран восстановления пароля'),
+            onPressed: wm.openForgotPasswordScreenAction,
+          ),
         ],
       ),
     );
