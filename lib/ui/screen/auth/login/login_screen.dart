@@ -5,29 +5,27 @@ import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
-import 'package:shop_app/ui/screen/auth/register/di/register_component.dart';
-import 'package:shop_app/ui/screen/auth/register/di/register_wm_builder.dart';
-import 'package:shop_app/ui/screen/auth/register/register_wm.dart';
+import 'package:shop_app/ui/screen/auth/login/di/login_component.dart';
+import 'package:shop_app/ui/screen/auth/login/di/login_wm_builder.dart';
+import 'package:shop_app/ui/screen/auth/login/login_wm.dart';
 
-/// Экран <Register>
-class RegisterScreen extends MwwmWidget<RegisterScreenComponent> {
-  RegisterScreen()
+/// Экран <Login>
+class LoginScreen extends MwwmWidget<LoginScreenComponent> {
+  LoginScreen()
       : super(
-          dependenciesBuilder: (context) => RegisterScreenComponent(context),
-          widgetStateBuilder: () => _RegisterScreenState(),
-          widgetModelBuilder: createRegisterWm,
+          dependenciesBuilder: (context) => LoginScreenComponent(context),
+          widgetStateBuilder: () => _LoginScreenState(),
+          widgetModelBuilder: createLoginWm,
         );
 }
 
-class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
+class _LoginScreenState extends WidgetState<LoginWidgetModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: Injector.of<RegisterScreenComponent>(context).component.scaffoldKey,
+      key: Injector.of<LoginScreenComponent>(context).component.scaffoldKey,
       appBar: AppBar(
-        title: Text(
-          registerScreenTitle,
-        ),
+        title: Text(loginScreenTitle),
       ),
       body: _buildBody(),
     );
@@ -47,7 +45,7 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  labelText: registerNameField,
+                  labelText: loginEmailField,
                 ),
               ),
             ),
@@ -55,15 +53,7 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  labelText: registerEmailField,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: registerPasswordField,
+                  labelText: loginPasswordField,
                 ),
               ),
             ),
@@ -72,7 +62,20 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text(registerAlreadyHaveAccountText),
+                  Text(loginForgotPasswordText),
+                  IconButton(
+                    icon: SvgPicture.asset(icRoundArrowRightDark),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(loginNotHaveAccountText),
                   IconButton(
                     icon: SvgPicture.asset(icRoundArrowRightDark),
                     onPressed: () {},
@@ -88,7 +91,7 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
                 child: RaisedButton(
                   onPressed: () {},
                   child: Text(
-                    registerButtonText,
+                    loginButtonText,
                     style: TextStyle(
                       fontSize: 14.0,
                     ),

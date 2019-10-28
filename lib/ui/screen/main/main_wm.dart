@@ -3,6 +3,7 @@ import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/config.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/interactor/theme_storage/theme_storage.dart';
+import 'package:shop_app/ui/screen/auth/login/login_route.dart';
 import 'package:shop_app/ui/screen/auth/register/register_route.dart';
 
 /// [WidgetModel] для экрана <Main>
@@ -15,6 +16,7 @@ class MainWidgetModel extends WidgetModel {
 
   final changeThemeAction = Action<bool>();
   final openRegisterScreenAction = Action();
+  final openLoginScreenAction = Action();
 
   Config get config => Environment.instance().config;
 
@@ -44,5 +46,7 @@ class MainWidgetModel extends WidgetModel {
 
     bind(openRegisterScreenAction,
         (_) => _navigator.currentState.push(RegisterScreenRoute()));
+    bind(openLoginScreenAction,
+        (_) => _navigator.currentState.push(LoginScreenRoute()));
   }
 }
