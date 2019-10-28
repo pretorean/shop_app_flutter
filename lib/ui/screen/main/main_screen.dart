@@ -29,6 +29,7 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
       ),
       bottomNavigationBar: BottomBarWidget(
         currentIndex: MainScreenRoute.thisPageIndex,
+        bagIsEmpty: false,
       ),
       body: _buildBody(),
     );
