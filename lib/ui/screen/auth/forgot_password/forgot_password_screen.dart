@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
-import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/auth/forgot_password/di/forgot_password_component.dart';
 import 'package:shop_app/ui/screen/auth/forgot_password/di/forgot_password_wm_builder.dart';
@@ -35,8 +34,6 @@ class _ForgotPasswordScreenState
   }
 
   Widget _buildBody() {
-    final bool _isDark = Environment.instance().config.isDarkTheme;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SingleChildScrollView(

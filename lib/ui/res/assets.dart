@@ -43,3 +43,6 @@ const String icRoundArrowRightLight =
     '$_baseLightResPath/ic_round_arrow_right.svg';
 const String icRoundArrowRightDark =
     '$_baseDarkResPath/ic_round_arrow_right.svg';
+
+// demo images
+const String imgDemoAvatar = '$_baseResPath/img_demo_avatar.png';
