@@ -84,6 +84,7 @@ class _RegisterScreenState extends WidgetState<RegisterWidgetModel> {
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Container(
                 height: 48.0,
+                width: double.infinity,
                 child: RaisedButton(
                   onPressed: () {},
                   child: Text(
