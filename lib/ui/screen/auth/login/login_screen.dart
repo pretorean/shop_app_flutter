@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/auth/login/di/login_component.dart';
@@ -32,6 +33,8 @@ class _LoginScreenState extends WidgetState<LoginWidgetModel> {
   }
 
   Widget _buildBody() {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SingleChildScrollView(
@@ -64,7 +67,9 @@ class _LoginScreenState extends WidgetState<LoginWidgetModel> {
                 children: <Widget>[
                   Text(loginForgotPasswordText),
                   IconButton(
-                    icon: SvgPicture.asset(icRoundArrowRightDark),
+                    icon: SvgPicture.asset(_isDark
+                        ? icRoundArrowRightDark
+                        : icRoundArrowRightLight),
                     onPressed: () {},
                   ),
                 ],
@@ -77,7 +82,9 @@ class _LoginScreenState extends WidgetState<LoginWidgetModel> {
                 children: <Widget>[
                   Text(loginNotHaveAccountText),
                   IconButton(
-                    icon: SvgPicture.asset(icRoundArrowRightDark),
+                    icon: SvgPicture.asset(_isDark
+                        ? icRoundArrowRightDark
+                        : icRoundArrowRightLight),
                     onPressed: () {},
                   ),
                 ],
