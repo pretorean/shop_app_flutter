@@ -35,6 +35,9 @@ final lightThemeData = ThemeData(
       borderRadius: BorderRadius.circular(25.0),
     ),
   ),
+  cardTheme: CardTheme(
+    color: colorWhite_light,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: colorWhite_light,
@@ -69,10 +72,11 @@ final darkThemeData = ThemeData(
   errorColor: colorError_dark,
   appBarTheme: AppBarTheme(
     color: colorBackground_dark,
+    brightness: Brightness.dark,
+    elevation: 0.0,
     iconTheme: IconThemeData(
       color: colorWhite_dark,
     ),
-    brightness: Brightness.dark,
     textTheme: TextTheme(
       title: TextStyle(
         fontSize: 34.0,
@@ -90,6 +94,9 @@ final darkThemeData = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),
     ),
+  ),
+  cardTheme: CardTheme(
+    color: colorDark_dark,
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
