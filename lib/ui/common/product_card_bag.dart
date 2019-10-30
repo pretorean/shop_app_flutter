@@ -69,10 +69,14 @@ class ProductCardBag extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Row(
                     children: <Widget>[
                       FloatingActionButton(
                         child: Icon(Icons.add),
+                        mini: true,
                         heroTag: null,
                         foregroundColor:
                             _isDark ? colorGray_dark : colorGray_light,
@@ -91,6 +95,7 @@ class ProductCardBag extends StatelessWidget {
                       ),
                       FloatingActionButton(
                         child: Icon(Icons.remove),
+                        mini: true,
                         heroTag: null,
                         foregroundColor:
                             _isDark ? colorGray_dark : colorGray_light,
