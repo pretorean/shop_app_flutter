@@ -46,4 +46,6 @@ const String icRoundArrowRightDark =
 
 // demo images
 const String imgDemoAvatar = '$_baseResPath/img_demo_avatar.png';
-const String imgDemoPullover = '$_baseResPath/img_demo_pullover.png';
+const String imgDemo01 = '$_baseResPath/img_demo01.png';
+const String imgDemo02 = '$_baseResPath/img_demo02.png';
+const String imgDemo03 = '$_baseResPath/img_demo03.png';
