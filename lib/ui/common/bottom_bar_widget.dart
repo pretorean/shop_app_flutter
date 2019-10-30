@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/colors.dart';
+import 'package:shop_app/ui/screen/catalog/catalog_route.dart';
 import 'package:shop_app/ui/screen/main/main_route.dart';
 import 'package:shop_app/ui/screen/profile/profile_route.dart';
 
@@ -41,7 +42,7 @@ class BottomBarWidget extends StatelessWidget {
           icon: SvgPicture.asset(
               _isDark ? icShopInactiveDark : icShopInactiveLight),
           activeIcon: SvgPicture.asset(
-              _isDark ? icShopInactiveDark : icShopInactiveLight),
+              _isDark ? icShopActivatedDark : icShopActivatedLight),
           title: SizedBox.shrink(),
         ),
         BottomNavigationBarItem(
@@ -86,6 +87,10 @@ class BottomBarWidget extends StatelessWidget {
 
       case ProfileScreenRoute.thisPageIndex:
         Navigator.push(context, ProfileScreenRoute());
+        break;
+
+      case CatalogScreenRoute.thisPageIndex:
+        Navigator.push(context, CatalogScreenRoute());
         break;
 
       default:
