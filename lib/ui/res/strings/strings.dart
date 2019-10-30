@@ -31,3 +31,9 @@ const String profilePaymentMethodsTitle = 'Способы оплаты';
 const String profilePromocodesTitle = 'Промо-коды';
 const String profileMyReviewsTitle = 'Мои отзывы';
 const String profileSettingsTitle = 'Настройки';
+
+// bag screen
+const String bagScreenTitle = 'Корзина';
+const String bagEnterPromoText = 'Введите промо-код';
+const String bagTotalAmountText = 'Сумма итого:';
+const String bagCheckOutText = 'Перейти к оплате';

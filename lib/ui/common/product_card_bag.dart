@@ -6,11 +6,20 @@ import 'package:shop_app/ui/res/colors.dart';
 class ProductCardBag extends StatelessWidget {
   const ProductCardBag({
     Key key,
-    @required this.title,
     @required this.image,
+    @required this.productTitle,
+    @required this.productColor,
+    @required this.productSize,
+    @required this.productPrice,
+    @required this.productCount,
   }) : super(key: key);
 
-  final String title;
+  final String productTitle;
+  final String productColor;
+  final String productSize;
+  final String productPrice;
+  final String productCount;
+
   final Image image;
 
   @override
@@ -33,7 +42,7 @@ class ProductCardBag extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    title,
+                    productTitle,
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -48,7 +57,7 @@ class ProductCardBag extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Black',
+                        productColor,
                         style: TextStyle(
                           fontSize: 11.0,
                         ),
@@ -62,7 +71,7 @@ class ProductCardBag extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'L',
+                        productSize,
                         style: TextStyle(
                           fontSize: 11.0,
                         ),
@@ -87,7 +96,7 @@ class ProductCardBag extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          '1',
+                          productCount,
                           style: TextStyle(
                             fontSize: 14,
                           ),
@@ -111,17 +120,15 @@ class ProductCardBag extends StatelessWidget {
           ),
           Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                child: Icon(
-                  Icons.more_vert,
-                  color: _isDark ? colorGray_dark : colorGray_light,
-                ),
+              IconButton(
+                icon: Icon(Icons.more_vert),
+                color: _isDark ? colorGray_dark : colorGray_light,
+                onPressed: () {},
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 32.0, right: 16.0),
+                padding: const EdgeInsets.only(top: 16.0, right: 16.0),
                 child: Text(
-                  '51\$',
+                  productPrice,
                   style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,

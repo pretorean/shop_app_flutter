@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
-import 'package:shop_app/ui/common/product_card_bag.dart';
-import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/strings/common_strings.dart';
 import 'package:shop_app/ui/screen/main/di/main_component.dart';
 import 'package:shop_app/ui/screen/main/di/main_wm_builder.dart';
@@ -39,38 +37,48 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
 
   Widget _buildBody() {
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          StreamedStateBuilder<bool>(
-            streamedState: wm.themeState,
-            builder: (context, snapshot) {
-              return SwitchListTile(
-                title: Text(blackThemeText),
-                value: snapshot,
-                onChanged: (value) {
-                  wm.changeThemeAction(value);
-                  setState(() {});
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: <Widget>[
+            Card(
+              child: StreamedStateBuilder<bool>(
+                streamedState: wm.themeState,
+                builder: (context, snapshot) {
+                  return SwitchListTile(
+                    title: Text(blackThemeText),
+                    value: snapshot,
+                    onChanged: (value) {
+                      wm.changeThemeAction(value);
+                      setState(() {});
+                    },
+                  );
                 },
-              );
-            },
-          ),
-          RaisedButton(
-            child: Text('Открыть экран регистрации'),
-            onPressed: wm.openRegisterScreenAction,
-          ),
-          RaisedButton(
-            child: Text('Открыть экран входа'),
-            onPressed: wm.openLoginScreenAction,
-          ),
-          RaisedButton(
-            child: Text('Открыть экран восстановления пароля'),
-            onPressed: wm.openForgotPasswordScreenAction,
-          ),
-          ProductCardBag(
-            image: Image.asset(imgDemoPullover),
-            title: 'Pullover',
-          ),
-        ],
+              ),
+            ),
+            Card(
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text('Открыть экран регистрации'),
+                      onPressed: wm.openRegisterScreenAction,
+                    ),
+                    RaisedButton(
+                      child: Text('Открыть экран входа'),
+                      onPressed: wm.openLoginScreenAction,
+                    ),
+                    RaisedButton(
+                      child: Text('Открыть экран восстановления пароля'),
+                      onPressed: wm.openForgotPasswordScreenAction,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
