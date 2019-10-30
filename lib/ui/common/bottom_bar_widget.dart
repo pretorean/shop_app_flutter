@@ -5,6 +5,7 @@ import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/ui/screen/bag/bag_route.dart';
 import 'package:shop_app/ui/screen/catalog/catalog_route.dart';
+import 'package:shop_app/ui/screen/favorites/favorites_route.dart';
 import 'package:shop_app/ui/screen/main/main_route.dart';
 import 'package:shop_app/ui/screen/profile/profile_route.dart';
 
@@ -96,6 +97,10 @@ class BottomBarWidget extends StatelessWidget {
 
       case BagScreenRoute.thisPageIndex:
         Navigator.push(context, BagScreenRoute());
+        break;
+
+      case FavoritesScreenRoute.thisPageIndex:
+        Navigator.push(context, FavoritesScreenRoute());
         break;
 
       default:
