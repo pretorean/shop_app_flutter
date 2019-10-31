@@ -28,6 +28,8 @@ Color
     colorError_dark = _redOrange,
 
 // other colors
+    colorBlackLabel = Colors.black,
+    colorStarColor = _koromiko,
     colorBadColors = _magenta,
     textColorPrimary = _magenta;
 
@@ -53,4 +55,5 @@ Color
     _redOrange = Color(0xFFFF2424), //Error
 
 // other colors
+    _koromiko = Color(0xFFFFBA49),
     _magenta = Color(0xFFFF00FF); // цвет ошибочной палитры

@@ -44,8 +44,15 @@ const String icRoundArrowRightLight =
 const String icRoundArrowRightDark =
     '$_baseDarkResPath/ic_round_arrow_right.svg';
 
+const String icProductInBagLight = '$_baseLightResPath/ic_product_in_bag.svg';
+const String icProductInBagDark = '$_baseDarkResPath/ic_product_in_bag.svg';
+
 // demo images
 const String imgDemoAvatar = '$_baseResPath/img_demo_avatar.png';
 const String imgDemo01 = '$_baseResPath/img_demo01.png';
 const String imgDemo02 = '$_baseResPath/img_demo02.png';
 const String imgDemo03 = '$_baseResPath/img_demo03.png';
+const String imgDemo04 = '$_baseResPath/img_demo04.png';
+const String imgDemo05 = '$_baseResPath/img_demo05.png';
+const String imgDemo06 = '$_baseResPath/img_demo06.png';
+const String imgDemo07 = '$_baseResPath/img_demo07.png';

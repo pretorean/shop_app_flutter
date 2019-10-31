@@ -1,5 +1,7 @@
 const String emptyString = '';
 
+const String newLabel = "NEW";
+
 const String nextButtonText = "Готово";
 const String okText = "ОК";
 const String cancelText = "ОТМЕНА";
