@@ -1,18 +1,13 @@
 const String emptyString = '';
 
-const String nextButtonText = "Готово";
+const String newLabel = "NEW";
+
 const String okText = "ОК";
 const String cancelText = "ОТМЕНА";
-const String itemNotFoundException = "Товар не найден";
 
 const String userNotFoundText = "Пользователь не найден";
 
 const String blackThemeText = "Темная тема";
-
-//placeholder
-const String errorPlaceholderTitleText = "Данные недоступны";
-const String errorPlaceholderSubtitleText = "Попробуйте повторить позже";
-const String errorPlaceholderBtnText = "Обновить";
 
 //ошибки сети
 const serverErrorMessage =

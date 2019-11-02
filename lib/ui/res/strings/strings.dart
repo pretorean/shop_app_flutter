@@ -37,3 +37,8 @@ const String bagScreenTitle = 'Корзина';
 const String bagEnterPromoText = 'Введите промо-код';
 const String bagTotalAmountText = 'Сумма итого:';
 const String bagCheckOutText = 'Перейти к оплате';
+
+// favorites screen
+const String favoriteScreenTitle = 'Избранное';
+const String favoriteSoldOutText =
+    'Извините, этот товар в настоящее время распродан';
