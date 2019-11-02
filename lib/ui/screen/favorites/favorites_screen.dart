@@ -92,6 +92,7 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
                 productPrice: '52\$',
                 productRating: 4,
                 productRatingCount: 3,
+                isSoldOut: true,
               ),
             ),
             Padding(

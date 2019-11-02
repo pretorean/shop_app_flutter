@@ -5,6 +5,7 @@ import 'package:shop_app/config/env.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/ui/res/strings/common_strings.dart';
+import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class ProductCardFavorite extends StatelessWidget {
@@ -21,6 +22,7 @@ class ProductCardFavorite extends StatelessWidget {
     this.productDiscountLabel,
     this.productIsNew,
     this.productInBag,
+    this.isSoldOut,
   }) : super(key: key);
 
   final String productTitle;
@@ -33,6 +35,7 @@ class ProductCardFavorite extends StatelessWidget {
   final String productDiscountLabel;
   final bool productIsNew;
   final bool productInBag;
+  final bool isSoldOut;
 
   final Image image;
 
@@ -42,47 +45,35 @@ class ProductCardFavorite extends StatelessWidget {
 
     return Stack(
       children: <Widget>[
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Container(
-            height: 104.0,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                image ??
-                    Placeholder(
-                      fallbackHeight: 104.0,
-                      fallbackWidth: 104.0,
-                      color: _isDark ? colorGray_dark : colorGray_light,
-                    ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          productBrand ?? 'product brand',
-                          style: TextStyle(
-                            fontSize: 11.0,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Opacity(
+              opacity: (isSoldOut ?? false) ? 0.5 : 1,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Container(
+                  height: 104.0,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      image ??
+                          Placeholder(
+                            fallbackHeight: 104.0,
+                            fallbackWidth: 104.0,
                             color: _isDark ? colorGray_dark : colorGray_light,
                           ),
-                        ),
-                        Text(
-                          productTitle ?? 'product title',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 6.0),
-                          child: Row(
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Color: ',
+                                productBrand ?? 'product brand',
                                 style: TextStyle(
                                   fontSize: 11.0,
                                   color: _isDark
@@ -91,75 +82,106 @@ class ProductCardFavorite extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                productColor ?? 'product color',
+                                productTitle ?? 'product title',
                                 style: TextStyle(
-                                  fontSize: 11.0,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              SizedBox(width: 12.0),
-                              Text(
-                                'Size: ',
-                                style: TextStyle(
-                                  fontSize: 11.0,
-                                  color: _isDark
-                                      ? colorGray_dark
-                                      : colorGray_light,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Color: ',
+                                      style: TextStyle(
+                                        fontSize: 11.0,
+                                        color: _isDark
+                                            ? colorGray_dark
+                                            : colorGray_light,
+                                      ),
+                                    ),
+                                    Text(
+                                      productColor ?? 'product color',
+                                      style: TextStyle(
+                                        fontSize: 11.0,
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.0),
+                                    Text(
+                                      'Size: ',
+                                      style: TextStyle(
+                                        fontSize: 11.0,
+                                        color: _isDark
+                                            ? colorGray_dark
+                                            : colorGray_light,
+                                      ),
+                                    ),
+                                    Text(
+                                      productSize ?? 'product size',
+                                      style: TextStyle(
+                                        fontSize: 11.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Text(
-                                productSize ?? 'product size',
-                                style: TextStyle(
-                                  fontSize: 11.0,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      productPrice ?? 'product price',
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    SmoothStarRating(
+                                      allowHalfRating: false,
+                                      onRatingChanged: (value) {},
+                                      starCount: 5,
+                                      rating: productRating ?? 0,
+                                      size: 14.0,
+                                      color: colorStarColor,
+                                      borderColor: _isDark
+                                          ? colorGray_dark
+                                          : colorGray_light,
+                                    ),
+                                    Text(
+                                      '(${productRatingCount ?? 0})',
+                                      style: TextStyle(
+                                        fontSize: 11.0,
+                                        color: _isDark
+                                            ? colorGray_dark
+                                            : colorGray_light,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                productPrice ?? 'product price',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                              Spacer(),
-                              SmoothStarRating(
-                                allowHalfRating: false,
-                                onRatingChanged: (value) {},
-                                starCount: 5,
-                                rating: productRating ?? 0,
-                                size: 14.0,
-                                color: colorStarColor,
-                                borderColor:
-                                    _isDark ? colorGray_dark : colorGray_light,
-                              ),
-                              Text(
-                                '(${productRatingCount ?? 0})',
-                                style: TextStyle(
-                                  fontSize: 11.0,
-                                  color: _isDark
-                                      ? colorGray_dark
-                                      : colorGray_light,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        color: _isDark ? colorGray_dark : colorGray_light,
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.close),
-                  color: _isDark ? colorGray_dark : colorGray_light,
-                  onPressed: () {},
-                ),
-              ],
+              ),
             ),
-          ),
+            if (isSoldOut ?? false)
+              Text(
+                favoriteSoldOutText,
+                style: TextStyle(
+                  fontSize: 11.0,
+                  color: _isDark ? colorGray_dark : colorGray_light,
+                ),
+              ),
+          ],
         ),
         if (productDiscountLabel != null)
           Positioned(
