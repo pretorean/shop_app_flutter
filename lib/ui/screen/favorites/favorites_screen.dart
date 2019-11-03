@@ -4,8 +4,11 @@ import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/domain/product.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
+import 'package:shop_app/ui/common/filter_persist_header.dart';
+import 'package:shop_app/ui/common/list_view_type.dart';
 import 'package:shop_app/ui/common/product_card_favorite.dart';
 import 'package:shop_app/ui/common/product_module_favorite.dart';
+import 'package:shop_app/ui/common/tags_persist_header.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_component.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_wm_builder.dart';
@@ -48,11 +51,28 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
             ),
           ],
         ),
-
-        _buildGrid(context),
-        _buildList(context),
-
-//        SliverGrid(),
+        SliverPersistentHeader(
+          delegate: TagsPersistHeaderSliver(),
+        ),
+        StreamedStateBuilder<ListViewType>(
+            streamedState: wm.viewTypeIndicatorState,
+            builder: (context, viewType) {
+              return SliverPersistentHeader(
+                delegate: FilterPersistHeaderSliver(
+                  viewType: viewType,
+                  onChangeViewType: () => wm.changeViewTypeAction(viewType),
+                ),
+              );
+            }),
+        StreamedStateBuilder<ListViewType>(
+            streamedState: wm.viewTypeListState,
+            builder: (context, viewType) {
+              if (viewType == ListViewType.list) {
+                return _buildList(context);
+              } else {
+                return _buildGrid(context);
+              }
+            }),
       ],
     );
   }
