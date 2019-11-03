@@ -49,7 +49,7 @@ class _InteractorMock {
           discountLabel: '30%',
           inBag: true,
         ),
-      ]);
+      ]).delay(Duration(seconds: 1));
 }
 
 /// [WidgetModel] для экрана <Favorites>

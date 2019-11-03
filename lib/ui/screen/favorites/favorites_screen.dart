@@ -26,25 +26,36 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: Injector.of<FavoritesScreenComponent>(context).component.scaffoldKey,
-      appBar: AppBar(
-        title: Text(favoriteScreenTitle),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
-      ),
       bottomNavigationBar: BottomBarWidget(
         currentIndex: FavoritesScreenRoute.thisPageIndex,
         bagIsEmpty: false,
       ),
-      body: _buildBody(),
+      body: _buildScrollBody(),
+    );
+  }
+
+  Widget _buildScrollBody() {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          title: Text(favoriteScreenTitle),
+          pinned: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
+          ],
+        ),
+
+        _buildList(context),
+
+//        SliverGrid(),
+      ],
     );
   }
 
   Widget _buildBody() {
-    CustomScrollView
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
       child: EntityStateBuilder<List<Product>>(
@@ -82,6 +93,51 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
           );
         },
       ),
+    );
+  }
+
+  Widget _buildList(BuildContext context) {
+    return EntityStateBuilder<List<Product>>(
+      streamedState: wm.productListState,
+      loadingChild: SliverList(
+        delegate: SliverChildListDelegate([
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+        ]),
+      ),
+      errorChild: SizedBox.shrink(),
+      child: (context, List<Product> list) {
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              Product item = list[index];
+              return Padding(
+                padding: EdgeInsets.only(
+                    top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ProductCardFavorite(
+                  productName: item.name,
+                  productColor: item.color,
+                  productPrice: item.price,
+                  productNewPrice: item.newPrice,
+                  productSize: item.size,
+                  image: item.imgPathSmall != null
+                      ? Image.asset(item.imgPathSmall)
+                      : null,
+                  productBrand: item.brandName,
+                  productRating: item.rating,
+                  productRatingCount: item.ratingCount,
+                  isSoldOut: item.isSoldOut,
+                  productInBag: item.inBag,
+                  productIsNew: item.isNew,
+                  productDiscountLabel: item.discountLabel,
+                ),
+              );
+            },
+            childCount: list.length,
+          ),
+        );
+      },
     );
   }
 }
