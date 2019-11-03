@@ -8,6 +8,7 @@ class _InteractorMock {
   Observable<List<Product>> getFavoritesList() => Observable.just([
         Product(
           imgPathSmall: imgDemo04,
+          imgPathMedium: imgDemo08,
           name: 'Shirt',
           color: 'Blue',
           size: 'L',
@@ -19,6 +20,7 @@ class _InteractorMock {
         ),
         Product(
           imgPathSmall: imgDemo06,
+          imgPathMedium: imgDemo09,
           name: 'Longsleeve Violeta',
           color: 'Orange',
           size: 'S',
@@ -29,6 +31,7 @@ class _InteractorMock {
         ),
         Product(
           imgPathSmall: imgDemo05,
+          imgPathMedium: imgDemo10,
           name: 'Shirt',
           color: 'Gray',
           size: 'L',
@@ -40,6 +43,7 @@ class _InteractorMock {
         ),
         Product(
           imgPathSmall: imgDemo07,
+          imgPathMedium: imgDemo11,
           name: 'T-Shirt',
           color: 'Black',
           size: 'S',

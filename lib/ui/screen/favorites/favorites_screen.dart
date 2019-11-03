@@ -5,6 +5,7 @@ import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/domain/product.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
 import 'package:shop_app/ui/common/product_card_favorite.dart';
+import 'package:shop_app/ui/common/product_module_favorite.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_component.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_wm_builder.dart';
@@ -48,51 +49,11 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
           ],
         ),
 
+        _buildGrid(context),
         _buildList(context),
 
 //        SliverGrid(),
       ],
-    );
-  }
-
-  Widget _buildBody() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-      child: EntityStateBuilder<List<Product>>(
-        streamedState: wm.productListState,
-        loadingChild: Center(
-          child: CircularProgressIndicator(),
-        ),
-        errorChild: SizedBox.shrink(),
-        child: (context, List<Product> list) {
-          return ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, int index) {
-              Product item = list[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: ProductCardFavorite(
-                  productName: item.name,
-                  productColor: item.color,
-                  productPrice: item.price,
-                  productNewPrice: item.newPrice,
-                  productSize: item.size,
-                  image: item.imgPathSmall != null
-                      ? Image.asset(item.imgPathSmall)
-                      : null,
-                  productBrand: item.brandName,
-                  productRating: item.rating,
-                  productRatingCount: item.ratingCount,
-                  isSoldOut: item.isSoldOut,
-                  productInBag: item.inBag,
-                  productIsNew: item.isNew,
-                  productDiscountLabel: item.discountLabel,
-                ),
-              );
-            },
-          );
-        },
-      ),
     );
   }
 
@@ -124,6 +85,57 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
                   image: item.imgPathSmall != null
                       ? Image.asset(item.imgPathSmall)
                       : null,
+                  productBrand: item.brandName,
+                  productRating: item.rating,
+                  productRatingCount: item.ratingCount,
+                  isSoldOut: item.isSoldOut,
+                  productInBag: item.inBag,
+                  productIsNew: item.isNew,
+                  productDiscountLabel: item.discountLabel,
+                ),
+              );
+            },
+            childCount: list.length,
+          ),
+        );
+      },
+    );
+  }
+
+  _buildGrid(BuildContext context) {
+    return EntityStateBuilder<List<Product>>(
+      streamedState: wm.productListState,
+      loadingChild: SliverList(
+        delegate: SliverChildListDelegate([
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+        ]),
+      ),
+      errorChild: SizedBox.shrink(),
+      child: (context, List<Product> list) {
+        return SliverGrid(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              crossAxisCount: 2,
+              childAspectRatio: 0.6),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              Product item = list[index];
+              return Padding(
+                padding: index.isEven
+                    ? EdgeInsets.only(left: 16.0)
+                    : EdgeInsets.only(right: 16.0),
+                child: ProductModuleFavorite(
+                  productName: item.name,
+                  image: item.imgPathMedium != null
+                      ? Image.asset(item.imgPathMedium)
+                      : null,
+                  productColor: item.color,
+                  productPrice: item.price,
+                  productNewPrice: item.newPrice,
+                  productSize: item.size,
                   productBrand: item.brandName,
                   productRating: item.rating,
                   productRatingCount: item.ratingCount,
