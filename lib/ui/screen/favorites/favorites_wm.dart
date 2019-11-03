@@ -1,7 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' as w;
 import 'package:mwwm/mwwm.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shop_app/domain/product.dart';
+import 'package:shop_app/ui/common/list_view_type.dart';
 import 'package:shop_app/ui/res/assets.dart';
 
 class _InteractorMock {
@@ -53,14 +54,19 @@ class _InteractorMock {
           discountLabel: '30%',
           inBag: true,
         ),
-      ]).delay(Duration(seconds: 1));
+      ]).delay(Duration(milliseconds: 300));
 }
 
 /// [WidgetModel] для экрана <Favorites>
 class FavoritesWidgetModel extends WidgetModel {
-  final GlobalKey<NavigatorState> navigator;
+  final w.GlobalKey<w.NavigatorState> navigator;
 
   final productListState = EntityStreamedState<List<Product>>();
+
+  final viewTypeListState = StreamedState<ListViewType>(ListViewType.list);
+  final viewTypeIndicatorState = StreamedState<ListViewType>(ListViewType.list);
+
+  final changeViewTypeAction = Action<ListViewType>();
 
   _InteractorMock _interactor = _InteractorMock();
 
@@ -74,5 +80,15 @@ class FavoritesWidgetModel extends WidgetModel {
     super.onLoad();
 
     subscribe(_interactor.getFavoritesList(), productListState.content);
+
+    bind(changeViewTypeAction, (viewType) {
+      if (viewType == ListViewType.list) {
+        viewTypeIndicatorState.accept(ListViewType.grid);
+        viewTypeListState.accept(ListViewType.grid);
+      } else {
+        viewTypeIndicatorState.accept(ListViewType.list);
+        viewTypeListState.accept(ListViewType.list);
+      }
+    });
   }
 }
