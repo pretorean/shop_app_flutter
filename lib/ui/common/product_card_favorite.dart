@@ -12,11 +12,12 @@ class ProductCardFavorite extends StatelessWidget {
   const ProductCardFavorite({
     Key key,
     @required this.image,
-    @required this.productTitle,
+    @required this.productName,
     @required this.productBrand,
     @required this.productColor,
     @required this.productSize,
     @required this.productPrice,
+    this.productNewPrice,
     @required this.productRating,
     @required this.productRatingCount,
     this.productDiscountLabel,
@@ -25,11 +26,12 @@ class ProductCardFavorite extends StatelessWidget {
     this.isSoldOut,
   }) : super(key: key);
 
-  final String productTitle;
+  final String productName;
   final String productBrand;
   final String productColor;
   final String productSize;
   final String productPrice;
+  final String productNewPrice;
   final double productRating;
   final int productRatingCount;
   final String productDiscountLabel;
@@ -82,7 +84,7 @@ class ProductCardFavorite extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                productTitle ?? 'product title',
+                                productName ?? 'product title',
                                 style: TextStyle(
                                   fontSize: 16.0,
                                 ),
@@ -129,12 +131,40 @@ class ProductCardFavorite extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 12.0),
                                 child: Row(
                                   children: <Widget>[
-                                    Text(
-                                      productPrice ?? 'product price',
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                      ),
-                                    ),
+                                    productNewPrice == null
+                                        ? Text(
+                                            productPrice ?? 'product price',
+                                            style: TextStyle(
+                                              fontSize: 14.0,
+                                            ),
+                                          )
+                                        : Row(
+                                            children: <Widget>[
+                                              Text(
+                                                productPrice ?? 'product price',
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  color: _isDark
+                                                      ? colorGray_dark
+                                                      : colorGray_light,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Text(
+                                                productNewPrice ?? 'product price',
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  color: _isDark
+                                                      ? colorHotSale_dark
+                                                      : colorHotSale_light,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                     Spacer(),
                                     SmoothStarRating(
                                       allowHalfRating: false,

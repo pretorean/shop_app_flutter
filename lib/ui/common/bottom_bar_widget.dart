@@ -84,23 +84,43 @@ class BottomBarWidget extends StatelessWidget {
   void _onItemTap(BuildContext context, int index) {
     switch (index) {
       case MainScreenRoute.thisPageIndex:
-        Navigator.push(context, MainScreenRoute());
+        Navigator.pushAndRemoveUntil(
+          context,
+          MainScreenRoute(),
+          (_) => false,
+        );
         break;
 
       case ProfileScreenRoute.thisPageIndex:
-        Navigator.push(context, ProfileScreenRoute());
+        Navigator.pushAndRemoveUntil(
+          context,
+          ProfileScreenRoute(),
+          (_) => false,
+        );
         break;
 
       case CatalogScreenRoute.thisPageIndex:
-        Navigator.push(context, CatalogScreenRoute());
+        Navigator.pushAndRemoveUntil(
+          context,
+          CatalogScreenRoute(),
+          (_) => false,
+        );
         break;
 
       case BagScreenRoute.thisPageIndex:
-        Navigator.push(context, BagScreenRoute());
+        Navigator.pushAndRemoveUntil(
+          context,
+          BagScreenRoute(),
+          (_) => false,
+        );
         break;
 
       case FavoritesScreenRoute.thisPageIndex:
-        Navigator.push(context, FavoritesScreenRoute());
+        Navigator.pushAndRemoveUntil(
+          context,
+          FavoritesScreenRoute(),
+          (_) => false,
+        );
         break;
 
       default:
