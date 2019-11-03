@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
-import 'package:shop_app/config/env.dart';
+import 'package:shop_app/domain/product.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
 import 'package:shop_app/ui/common/product_card_favorite.dart';
-import 'package:shop_app/ui/res/assets.dart';
+import 'package:shop_app/ui/common/product_module_favorite.dart';
 import 'package:shop_app/ui/res/strings/strings.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_component.dart';
 import 'package:shop_app/ui/screen/favorites/di/favorites_wm_builder.dart';
@@ -27,96 +27,129 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: Injector.of<FavoritesScreenComponent>(context).component.scaffoldKey,
-      appBar: AppBar(
-        title: Text(favoriteScreenTitle),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
-      ),
       bottomNavigationBar: BottomBarWidget(
         currentIndex: FavoritesScreenRoute.thisPageIndex,
         bagIsEmpty: false,
       ),
-      body: _buildBody(),
+      body: _buildScrollBody(),
     );
   }
 
-  Widget _buildBody() {
-    final bool _isDark = Environment.instance().config.isDarkTheme;
-
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: ProductCardFavorite(
-                image: Image.asset(imgDemo04),
-                productTitle: 'Shirt',
-                productColor: 'Blue',
-                productSize: 'L',
-                productBrand: 'Lime',
-                productPrice: '32\$',
-                productRating: 5,
-                productRatingCount: 10,
-                productInBag: true,
-              ),
+  Widget _buildScrollBody() {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          title: Text(favoriteScreenTitle),
+          pinned: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: ProductCardFavorite(
-                image: Image.asset(imgDemo06),
-                productTitle: 'Longsleeve Violeta',
-                productColor: 'Orange',
-                productSize: 'S',
-                productBrand: 'Mango',
-                productPrice: '46\$',
-                productRating: 0,
-                productRatingCount: 0,
-                productIsNew: true,
-                productInBag: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: ProductCardFavorite(
-                image: Image.asset(imgDemo05),
-                productTitle: 'Shirt',
-                productColor: 'Gray',
-                productSize: 'L',
-                productBrand: 'Oliver',
-                productPrice: '52\$',
-                productRating: 4,
-                productRatingCount: 3,
-                isSoldOut: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: ProductCardFavorite(
-                image: Image.asset(imgDemo07),
-                productTitle: 'T-Shirt',
-                productColor: 'Black',
-                productSize: 'S',
-                productBrand: '&Berries',
-                productPrice: '55\$',
-                productRating: 0,
-                productRatingCount: 0,
-                productDiscountLabel: '30%',
-                productInBag: true,
-              ),
-            ),
-//            Padding(
-//              padding: const EdgeInsets.only(bottom: 16.0),
-//              child: ProductCardFavorite(),
-//            ),
           ],
         ),
+
+        _buildGrid(context),
+        _buildList(context),
+
+//        SliverGrid(),
+      ],
+    );
+  }
+
+  Widget _buildList(BuildContext context) {
+    return EntityStateBuilder<List<Product>>(
+      streamedState: wm.productListState,
+      loadingChild: SliverList(
+        delegate: SliverChildListDelegate([
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+        ]),
       ),
+      errorChild: SizedBox.shrink(),
+      child: (context, List<Product> list) {
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              Product item = list[index];
+              return Padding(
+                padding: EdgeInsets.only(
+                    top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ProductCardFavorite(
+                  productName: item.name,
+                  productColor: item.color,
+                  productPrice: item.price,
+                  productNewPrice: item.newPrice,
+                  productSize: item.size,
+                  image: item.imgPathSmall != null
+                      ? Image.asset(item.imgPathSmall)
+                      : null,
+                  productBrand: item.brandName,
+                  productRating: item.rating,
+                  productRatingCount: item.ratingCount,
+                  isSoldOut: item.isSoldOut,
+                  productInBag: item.inBag,
+                  productIsNew: item.isNew,
+                  productDiscountLabel: item.discountLabel,
+                ),
+              );
+            },
+            childCount: list.length,
+          ),
+        );
+      },
+    );
+  }
+
+  _buildGrid(BuildContext context) {
+    return EntityStateBuilder<List<Product>>(
+      streamedState: wm.productListState,
+      loadingChild: SliverList(
+        delegate: SliverChildListDelegate([
+          Center(
+            child: CircularProgressIndicator(),
+          ),
+        ]),
+      ),
+      errorChild: SizedBox.shrink(),
+      child: (context, List<Product> list) {
+        return SliverGrid(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              crossAxisCount: 2,
+              childAspectRatio: 0.6),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              Product item = list[index];
+              return Padding(
+                padding: index.isEven
+                    ? EdgeInsets.only(left: 16.0)
+                    : EdgeInsets.only(right: 16.0),
+                child: ProductModuleFavorite(
+                  productName: item.name,
+                  image: item.imgPathMedium != null
+                      ? Image.asset(item.imgPathMedium)
+                      : null,
+                  productColor: item.color,
+                  productPrice: item.price,
+                  productNewPrice: item.newPrice,
+                  productSize: item.size,
+                  productBrand: item.brandName,
+                  productRating: item.rating,
+                  productRatingCount: item.ratingCount,
+                  isSoldOut: item.isSoldOut,
+                  productInBag: item.inBag,
+                  productIsNew: item.isNew,
+                  productDiscountLabel: item.discountLabel,
+                ),
+              );
+            },
+            childCount: list.length,
+          ),
+        );
+      },
     );
   }
 }
