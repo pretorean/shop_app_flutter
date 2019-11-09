@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart' as w;
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/config.dart';
@@ -14,11 +16,14 @@ class MainWidgetModel extends WidgetModel {
   final ThemeStorage _themeStorage;
 
   final themeState = StreamedState<bool>();
+  final bannerImageState = StreamedState<bool>();
 
   final changeThemeAction = Action<bool>();
   final openRegisterScreenAction = Action();
   final openLoginScreenAction = Action();
   final openForgotPasswordScreenAction = Action();
+
+  final random = Random();
 
   Config get config => Environment.instance().config;
 
@@ -35,6 +40,7 @@ class MainWidgetModel extends WidgetModel {
     super.onLoad();
 
     themeState.accept(config.isDarkTheme);
+    bannerImageState.accept(random.nextBool());
 
     _bindActions();
   }
@@ -44,6 +50,7 @@ class MainWidgetModel extends WidgetModel {
       themeState.accept(value);
       config = config.copyWith(isDarkTheme: value);
       _themeStorage.saveTheme(value);
+      bannerImageState.accept(random.nextBool());
     });
 
     bind(openRegisterScreenAction,
