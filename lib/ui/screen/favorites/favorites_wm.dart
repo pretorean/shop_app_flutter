@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart' as w;
 import 'package:mwwm/mwwm.dart';
 import 'package:rxdart/rxdart.dart';
@@ -63,12 +65,14 @@ class FavoritesWidgetModel extends WidgetModel {
 
   final productListState = EntityStreamedState<List<Product>>();
 
-  final viewTypeListState = StreamedState<ListViewType>(ListViewType.list);
-  final viewTypeIndicatorState = StreamedState<ListViewType>(ListViewType.list);
+  final viewTypeListState = StreamedState<ListViewType>();
+  final viewTypeIndicatorState = StreamedState<ListViewType>();
 
   final changeViewTypeAction = Action<ListViewType>();
 
   _InteractorMock _interactor = _InteractorMock();
+
+  final random = Random();
 
   FavoritesWidgetModel(
     WidgetModelDependencies dependencies,
@@ -78,6 +82,10 @@ class FavoritesWidgetModel extends WidgetModel {
   @override
   void onLoad() {
     super.onLoad();
+
+    var viewType = random.nextBool() ? ListViewType.list : ListViewType.grid;
+    viewTypeListState.accept(viewType);
+    viewTypeIndicatorState.accept(viewType);
 
     subscribe(_interactor.getFavoritesList(), productListState.content);
 

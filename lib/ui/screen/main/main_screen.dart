@@ -37,6 +37,7 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
             delegate: SliverChildListDelegate(
               [
                 _bigBannerSection(),
+                _bannerSetSection(),
                 _themeSwitchWidget(),
                 _loginWidgetsDemo(),
               ],
@@ -47,7 +48,7 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
     );
   }
 
-  _bigBannerSection() {
+  Widget _bigBannerSection() {
     final bool _isDark = Environment.instance().config.isDarkTheme;
 
     return Stack(
@@ -78,7 +79,7 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
               SizedBox(
                 width: 160.0,
                 child: RaisedButton(
-                  child: Text('Проверьте'),
+                  child: Text('Купить'),
                   onPressed: () {},
                 ),
               )
@@ -89,8 +90,111 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
     );
   }
 
-  _themeSwitchWidget() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+  Widget _bannerSetSection() {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
+    return Row(
+      children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width / 2,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.width / 2,
+                width: MediaQuery.of(context).size.width / 2,
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0, bottom: 32.0),
+                    child: Text(
+                      'Сезонная распродажа',
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: _isDark ? colorHotSale_dark : colorHotSale_light,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Stack(
+                alignment: Alignment.bottomLeft,
+                children: <Widget>[
+                  Image.asset(
+                    imgBanner03,
+                    height: MediaQuery.of(context).size.width / 2,
+                    width: MediaQuery.of(context).size.width / 2,
+                    fit: BoxFit.fitHeight,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16.0, bottom: 32.0),
+                      child: Text(
+                        'Чёрное',
+                        style: TextStyle(
+                          fontSize: 34.0,
+                          color: _isDark ? colorWhite_dark : colorWhite_light,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {},
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        StreamedStateBuilder<bool>(
+          streamedState: wm.bannerImageState,
+          builder: (context, bannerType) {
+            return Stack(
+              alignment: Alignment.centerLeft,
+              children: <Widget>[
+                Image.asset(
+                  bannerType ? imgBanner04 : imgBanner05,
+                  height: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width / 2,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      bannerType ? 'Мужские шапки' : 'Мужские толстовки',
+                      style: TextStyle(
+                        fontSize: 34.0,
+                        color: _isDark ? colorWhite_dark : colorWhite_light,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {},
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _themeSwitchWidget() => Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
         child: Card(
           child: StreamedStateBuilder<bool>(
             streamedState: wm.themeState,
@@ -108,26 +212,29 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
         ),
       );
 
-  _loginWidgetsDemo() => Padding(
+  Widget _loginWidgetsDemo() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Card(
-          child: Container(
-            width: double.infinity,
-            child: Column(
-              children: <Widget>[
-                RaisedButton(
-                  child: Text('Открыть экран регистрации'),
-                  onPressed: wm.openRegisterScreenAction,
-                ),
-                RaisedButton(
-                  child: Text('Открыть экран входа'),
-                  onPressed: wm.openLoginScreenAction,
-                ),
-                RaisedButton(
-                  child: Text('Открыть экран восстановления пароля'),
-                  onPressed: wm.openForgotPasswordScreenAction,
-                ),
-              ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: double.infinity,
+              child: Column(
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text('Открыть экран регистрации'),
+                    onPressed: wm.openRegisterScreenAction,
+                  ),
+                  RaisedButton(
+                    child: Text('Открыть экран входа'),
+                    onPressed: wm.openLoginScreenAction,
+                  ),
+                  RaisedButton(
+                    child: Text('Открыть экран восстановления пароля'),
+                    onPressed: wm.openForgotPasswordScreenAction,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

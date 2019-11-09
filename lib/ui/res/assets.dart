@@ -52,6 +52,9 @@ const String imgDemoAvatar = '$_baseResPath/img_demo_avatar.png';
 
 const String imgBanner01 = '$_baseResPath/img_demo_banner01.png';
 const String imgBanner02 = '$_baseResPath/img_demo_banner02.png';
+const String imgBanner03 = '$_baseResPath/img_demo_banner03.png';
+const String imgBanner04 = '$_baseResPath/img_demo_banner04.png';
+const String imgBanner05 = '$_baseResPath/img_demo_banner05.png';
 
 const String imgDemo01 = '$_baseResPath/img_demo01.png';
 const String imgDemo02 = '$_baseResPath/img_demo02.png';
