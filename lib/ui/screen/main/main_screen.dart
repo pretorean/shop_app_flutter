@@ -38,6 +38,8 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
               [
                 _bigBannerSection(),
                 _bannerSetSection(),
+                _sectionSale(),
+                _SectionNews(),
                 _themeSwitchWidget(),
                 _loginWidgetsDemo(),
               ],
@@ -190,6 +192,138 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
           },
         ),
       ],
+    );
+  }
+
+  Widget _sectionSale() {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 32.0, left: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Распродажа',
+                style: TextStyle(fontSize: 34.0),
+              ),
+              FlatButton(
+                onPressed: () {},
+                child: Text(
+                  'Смотреть всё',
+                  style: TextStyle(
+                      fontSize: 11.0,
+                      color: _isDark ? colorWhite_dark : colorBlack_light),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 4.0),
+          Text(
+            'Супер летняя распродажа',
+            style: TextStyle(
+              fontSize: 11.0,
+              color: _isDark ? colorGray_dark : colorGray_light,
+            ),
+          ),
+          SizedBox(height: 20.0),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _SectionNews() {
+    final bool _isDark = Environment.instance().config.isDarkTheme;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 32.0, left: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Новое',
+                style: TextStyle(fontSize: 34.0),
+              ),
+              FlatButton(
+                onPressed: () {},
+                child: Text(
+                  'Смотреть всё',
+                  style: TextStyle(
+                      fontSize: 11.0,
+                      color: _isDark ? colorWhite_dark : colorBlack_light),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 4.0),
+          Text(
+            'Вы никогда не видели этого раньше!',
+            style: TextStyle(
+              fontSize: 11.0,
+              color: _isDark ? colorGray_dark : colorGray_light,
+            ),
+          ),
+          SizedBox(height: 20.0),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+                SizedBox(width: 16.0),
+                Placeholder(
+                  fallbackWidth: 150.0,
+                  fallbackHeight: 260.0,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
