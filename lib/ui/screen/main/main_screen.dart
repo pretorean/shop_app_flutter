@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:injector/injector.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:shop_app/config/env.dart';
+import 'package:shop_app/domain/product.dart';
 import 'package:shop_app/ui/common/bottom_bar_widget.dart';
+import 'package:shop_app/ui/common/product_module_catalog.dart';
 import 'package:shop_app/ui/res/assets.dart';
 import 'package:shop_app/ui/res/colors.dart';
 import 'package:shop_app/ui/res/strings/common_strings.dart';
@@ -230,30 +232,39 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
             ),
           ),
           SizedBox(height: 20.0),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: <Widget>[
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-              ],
+          EntityStateBuilder<List<Product>>(
+            streamedState: wm.saleProductListState,
+            loadingChild: CircularProgressIndicator(),
+            errorChild: SizedBox.shrink(),
+            child: (context, list) => Container(
+              height: 270.0,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    Product item = list[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: ProductModuleCatalog(
+                        productName: item.name,
+                        image: item.imgPathMedium != null
+                            ? Image.asset(
+                                item.imgPathMedium,
+                                height: 184.0,
+                                fit: BoxFit.fill,
+                              )
+                            : null,
+                        productPrice: item.price,
+                        productNewPrice: item.newPrice,
+                        productBrand: item.brandName,
+                        productRating: item.rating,
+                        productRatingCount: item.ratingCount,
+                        productInBag: item.inBag,
+                        productIsNew: item.isNew,
+                        productDiscountLabel: item.discountLabel,
+                      ),
+                    );
+                  }),
             ),
           ),
         ],
@@ -296,30 +307,40 @@ class _MainScreenState extends WidgetState<MainWidgetModel> {
             ),
           ),
           SizedBox(height: 20.0),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: <Widget>[
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-                SizedBox(width: 16.0),
-                Placeholder(
-                  fallbackWidth: 150.0,
-                  fallbackHeight: 260.0,
-                ),
-              ],
+          EntityStateBuilder<List<Product>>(
+            streamedState: wm.newProductListState,
+            loadingChild: CircularProgressIndicator(),
+            errorChild: SizedBox.shrink(),
+            child: (context, list) => Container(
+              height: 270.0,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(right: 16.0),
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    Product item = list[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: ProductModuleCatalog(
+                        productName: item.name,
+                        image: item.imgPathMedium != null
+                            ? Image.asset(
+                                item.imgPathMedium,
+                                height: 184.0,
+                                fit: BoxFit.fill,
+                              )
+                            : null,
+                        productPrice: item.price,
+                        productNewPrice: item.newPrice,
+                        productBrand: item.brandName,
+                        productRating: item.rating,
+                        productRatingCount: item.ratingCount,
+                        productInBag: item.inBag,
+                        productIsNew: item.isNew,
+                        productDiscountLabel: item.discountLabel,
+                      ),
+                    );
+                  }),
             ),
           ),
         ],
