@@ -67,3 +67,6 @@ const String imgDemo08 = '$_baseResPath/img_demo08.png';
 const String imgDemo09 = '$_baseResPath/img_demo09.png';
 const String imgDemo10 = '$_baseResPath/img_demo10.png';
 const String imgDemo11 = '$_baseResPath/img_demo11.png';
+const String imgDemo12 = '$_baseResPath/img_demo12.png';
+const String imgDemo13 = '$_baseResPath/img_demo13.png';
+const String imgDemo14 = '$_baseResPath/img_demo14.png';
