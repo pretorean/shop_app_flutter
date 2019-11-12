@@ -42,3 +42,6 @@ const String bagCheckOutText = 'Перейти к оплате';
 const String favoriteScreenTitle = 'Избранное';
 const String favoriteSoldOutText =
     'Извините, этот товар в настоящее время распродан';
+
+// category screen
+const String categoryScreenTitle = 'Категории';

@@ -65,14 +65,15 @@ class _FavoritesScreenState extends WidgetState<FavoritesWidgetModel> {
               );
             }),
         StreamedStateBuilder<ListViewType>(
-            streamedState: wm.viewTypeListState,
-            builder: (context, viewType) {
-              if (viewType == ListViewType.list) {
-                return _buildList(context);
-              } else {
-                return _buildGrid(context);
-              }
-            }),
+          streamedState: wm.viewTypeListState,
+          builder: (context, viewType) {
+            if (viewType == ListViewType.list) {
+              return _buildList(context);
+            } else {
+              return _buildGrid(context);
+            }
+          },
+        ),
       ],
     );
   }
